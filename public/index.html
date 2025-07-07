@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Price Tables</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tab-button.active {
+      @apply bg-blue-600 text-white;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="text-center py-8 px-4">
+    <h1 class="text-4xl font-bold mb-2">📈 Live Price Tables</h1>
+    <p class="text-gray-600">Track Nifty, Bank Nifty, SENSEX, Dow Jones, and S&P 500 in real‑time.</p>
+    <div class="text-sm text-gray-500 mt-2">
+      Last updated: <span id="update-time"></span> IST | Auto‑refreshes every 30 seconds
+    </div>
+    <div class="mt-6 flex justify-center gap-4">
+      <button class="tab-button active px-4 py-2 rounded-md bg-blue-600 text-white" onclick="showTab('indian')">
+        🇮🇳 Indian Indices
+      </button>
+      <button class="tab-button px-4 py-2 rounded-md bg-gray-200" onclick="showTab('global')">
+        🌍 Global Indices
+      </button>
+    </div>
+  </header>
+
+  <!-- Indian Indices -->
+  <section id="indian" class="max-w-6xl mx-auto px-4">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+
+      <!-- Nifty 50 Widget -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <iframe 
+          src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22NSE%3ANIFTY%22%2C%22width%22%3A%22280%22%2C%22height%22%3A%22150%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%7D" 
+          width="100%" height="150" frameborder="0" allowtransparency="true" scrolling="no">
+        </iframe>
+      </div>
+
+      <!-- Bank Nifty Widget -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <iframe 
+          src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22NSE%3ABANKNIFTY%22%2C%22width%22%3A%22280%22%2C%22height%22%3A%22150%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%7D" 
+          width="100%" height="150" frameborder="0" allowtransparency="true" scrolling="no">
+        </iframe>
+      </div>
+
+      <!-- SENSEX Widget -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <iframe 
+          src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22BSE%3ASENSEX%22%2C%22width%22%3A%22280%22%2C%22height%22%3A%22150%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%7D" 
+          width="100%" height="150" frameborder="0" allowtransparency="true" scrolling="no">
+        </iframe>
+      </div>
+
+    </div>
+
+    <!-- Data Table (Placeholders remain static—you can integrate API later) -->
+    <div class="bg-white rounded-xl shadow overflow-x-auto">
+      <table class="w-full text-left border-collapse text-sm">
+        <thead class="bg-gray-50 text-gray-700">
+          <tr>
+            <th class="px-4 py-3">Index</th>
+            <th class="px-4 py-3">Current</th>
+            <th class="px-4 py-3">High</th>
+            <th class="px-4 py-3">Low</th>
+            <th class="px-4 py-3">% Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t">
+            <td class="px-4 py-2">Nifty 50</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-4 py-2">Bank Nifty</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-4 py-2">SENSEX</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+            <td class="px-4 py-2">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Global Indices -->
+  <section id="global" class="max-w-6xl mx-auto px-4 hidden">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+
+      <!-- Dow Jones Widget -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <iframe 
+          src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22INDEX%3ADJI%22%2C%22width%22%3A%22280%22%2C%22height%22%3A%22150%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%7D" 
+          width="100%" height="150" frameborder="0" allowtransparency="true" scrolling="no">
+        </iframe>
+      </div>
+
+      <!-- S&P 500 Widget -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <iframe 
+          src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22INDEX%3ASPX%22%2C%22width%22%3A%22280%22%2C%22height%22%3A%22150%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%7D" 
+          width="100%" height="150" frameborder="0" allowtransparency="true" scrolling="no">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-6">
+    Made with ❤️ for Smart Money Traders | © 2025
+  </footer>
+
+  <script>
+    // Tab toggle
+    function showTab(id) {
+      document.querySelectorAll('section[id]').forEach(s => s.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active','bg-blue-600','text-white'));
+      event.target.classList.add('active','bg-blue-600','text-white');
+    }
+    // Update time stamp
+    function updateTime() {
+      const now = new Date();
+      const str = now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      document.getElementById('update-time').textContent = str;
+    }
+    updateTime();
+    setInterval(updateTime, 30000);
+  </script>
+
+</body>
+</html>
