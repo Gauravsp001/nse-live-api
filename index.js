@@ -1,17 +1,18 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from public folder
+app.use(cors()); // ✅ CORS FIX
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve the index.html at root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ✅ This is your new API route
+// ✅ Your API route
 app.get('/api/indices', (req, res) => {
   res.json({
     nifty: {
@@ -35,7 +36,6 @@ app.get('/api/indices', (req, res) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`✅ Server is running at http://localhost:${PORT}`);
 });
