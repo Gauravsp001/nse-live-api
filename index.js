@@ -1,18 +1,19 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
+const cors = require('cors'); // 🔥 CORS import
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // ✅ CORS FIX
+app.use(cors()); // 🔥 CORS enable
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Home route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ✅ Your API route
+// ✅ API endpoint
 app.get('/api/indices', (req, res) => {
   res.json({
     nifty: {
