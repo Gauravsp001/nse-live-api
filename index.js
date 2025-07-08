@@ -14,9 +14,17 @@ async function fetchNSEIndex(symbol) {
   const url = `https://www.nseindia.com/api/equity-stockIndices?index=${encodeURIComponent(symbol)}`;
 
   try {
+    // Create initial session (important!)
+    await axios.get("https://www.nseindia.com", {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+
+    // Actual data request
     const res = await axios.get(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        "User-Agent": "Mozilla/5.0",
         "Accept": "*/*",
         "Accept-Language": "en-US,en;q=0.9",
         "Referer": "https://www.nseindia.com/",
