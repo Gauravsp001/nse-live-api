@@ -22,7 +22,6 @@ async function fetchNSEIndex(symbol) {
         "Referer": "https://www.nseindia.com/",
         "Connection": "keep-alive"
       }
-
     });
 
     const data = res.data.data[0];
@@ -47,11 +46,7 @@ app.get('/api', async (req, res) => {
     fetchNSEIndex("S&P BSE SENSEX"),
   ]);
 
-  res.json({
-    nifty,
-    banknifty,
-    sensex
-  });
+  res.json({ nifty, banknifty, sensex });
 });
 
 // Test Route
@@ -59,7 +54,7 @@ app.get('/nse', (req, res) => {
   res.json({ message: '✅ NSE API is working!' });
 });
 
-// Serve HTML
+// Serve static HTML
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
